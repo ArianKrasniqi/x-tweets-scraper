@@ -68,11 +68,11 @@ async function login(page) {
       return true;
     }
 
-    // If not logged in, proceed with login
+    // If not logged in, proceed with login using email
     const usernameInput = await page.waitForSelector(
       'input[autocomplete="username"]'
     );
-    await usernameInput.type(process.env.TWITTER_USERNAME);
+    await usernameInput.type(process.env.TWITTER_EMAIL);
 
     const nextButton = await page.waitForSelector("text=Next");
     await nextButton.click();
