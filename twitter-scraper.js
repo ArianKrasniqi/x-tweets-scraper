@@ -219,7 +219,9 @@ async function main() {
     const tweets = await scrapeTweets(page, targetUsername, 10);
     console.log("Scraped tweets:", tweets);
 
-    const filename = `${targetUsername}_tweets.json`;
+    // Create data directory and save file there
+    await fs.mkdir('data', { recursive: true });
+    const filename = path.join('data', `${targetUsername}_tweets.json`);
     await fs.writeFile(filename, JSON.stringify(tweets, null, 2));
     console.log(`Tweets saved to ${filename}`);
   } catch (error) {
