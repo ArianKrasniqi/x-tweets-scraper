@@ -58,7 +58,7 @@ async function login(page) {
     // Check if we're already logged in
     const isAlreadyLoggedIn = await page
       .waitForSelector('a[data-testid="AppTabBar_Profile_Link"]', {
-        timeout: 3000,
+        timeout: 2000,
       })
       .then(() => true)
       .catch(() => false);
@@ -86,7 +86,7 @@ async function login(page) {
     // Wait for login to complete with shorter timeout
     const isLoggedIn = await page
       .waitForSelector('a[data-testid="AppTabBar_Profile_Link"]', {
-        timeout: 3000,
+        timeout: 2000,
       })
       .then(() => true)
       .catch(() => false);
@@ -109,7 +109,7 @@ async function scrapeTweets(page, username, maxTweets = 10) {
   try {
     // Go to user's profile with navigation timeout
     await page.goto(`https://x.com/${username}`, {
-      timeout: 5000,
+      timeout: 2000,
       waitUntil: 'domcontentloaded' // Changed from networkidle0 for faster loading
     });
     
@@ -124,7 +124,7 @@ async function scrapeTweets(page, username, maxTweets = 10) {
     if (!quickCheck) {
       // If tweets aren't immediately visible, wait a bit longer
       await page.waitForSelector('article[data-testid="tweet"]', {
-        timeout: 3000,
+        timeout: 2000,
       });
     }
 
